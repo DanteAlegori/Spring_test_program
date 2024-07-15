@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://thymeleaf.org ">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <title>Все люди</title>
+</head>
+<body>
+
+<ul>
+    <li th:each="person : ${people}">
+        <a th:href="@{/people/{id}(id=${person.id})}"
+           th:text="${person.name + ', ' + person.age}">user</a>
+    </li>
+</ul>
+
+<br/>
+<hr/>
+<div class="bg-white p-6 rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold mb-2" th:text="${person.getName()}"></h2>
+    <p th:text="${person.getId()}"></p>
+</div>
+<a th:href="@{/people/{id}/edit(id=${person.getId()})}" class="btn btn-primary">Edit</a>
+
+<form th:method="DELETE" th:action="@{/people/{id}(id=${person.getId()})}">
+    <input type="submit" value="Delete"/>
+</form>
+<a href="/people/new" class="btn btn-primary">Create new person</a>
+
+</body>
+</html>

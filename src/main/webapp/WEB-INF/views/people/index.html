@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://thymeleaf.org ">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" type="text/css"/>
+    <title>Все люди</title>
+</head>
+<body>
+<ul class="list-none space-y-4">
+    <li th:each="person : ${people}">
+        <a th:href="@{/people/{id}(id=${person.id})}" th:text="${person.name}"
+           class="block px-4 py-2 hover:bg-blue-100 hover:text-blue-500 transition-colors duration-300">
+        </a>
+    </li>
+</ul>
+
+<button type="button" class="btn btn-primary w-full" onclick="window.location.href='/people/new'">Create New Person</button>
+
+</body>
+</html>
