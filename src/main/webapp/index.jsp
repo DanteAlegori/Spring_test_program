@@ -7,5 +7,7 @@
 <form action="/people" method="get">
     <button type="submit" class="btn btn-primary w-full">GGGGG</button>
 </form>
-
+<form action="/test-batch-update" method="get">
+    <button type="submit" class="btn btn-primary w-full">GGGGG</button>
+</form>
 </html>
