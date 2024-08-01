@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Component
@@ -31,8 +32,12 @@ PersonDAO {
         return jdbcTemplate.query("SELECT * FROM Person", new BeanPropertyRowMapper<Person>(Person.class));
     }
 
-    public Person get(int id) {
-        return jdbcTemplate.query("SELECT * FROM Person WHERE id=?", new Object[]{id}, new BeanPropertyRowMapper<Person>(Person.class)).stream().findFirst().orElse(null);
+    public Optional<Person> get(int id) {
+        return Optional.ofNullable(jdbcTemplate.query("SELECT * FROM Person WHERE id=?", new Object[]{id}, new BeanPropertyRowMapper<Person>(Person.class)).stream().findFirst().orElse(null));
+
+    }
+    public Optional<Person> get(String email) {
+        return Optional.ofNullable(jdbcTemplate.query("SELECT * FROM Person WHERE email=?", new Object[]{email}, new BeanPropertyRowMapper<Person>(Person.class)).stream().findFirst().orElse(null));
 
     }
 
